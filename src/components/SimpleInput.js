@@ -1,4 +1,4 @@
-import useInput from '../hooks/use-input';
+import useInputReducer from '../hooks/use-input-useReducer';
 
 const SimpleInput = (props) => {
   const {
@@ -8,7 +8,7 @@ const SimpleInput = (props) => {
     valueChangeHandler: nameChangeHandler,
     inputBlurHandler: nameBlurHandler,
     reset: resetNameInput
-  } = useInput(value => value.trim() !== '');
+  } = useInputReducer(value => value.trim() !== '');
 
   const {
     value: enteredEmail, 
@@ -17,7 +17,7 @@ const SimpleInput = (props) => {
     valueChangeHandler: emailChangeHandler,
     inputBlurHandler: emailBlurHandler,
     reset: resetEmailInput
-  } = useInput(value => value.includes('@'));
+  } = useInputReducer(value => value.includes('@'));
 
   let formIsValid = false;
   
@@ -61,6 +61,7 @@ const SimpleInput = (props) => {
           id='email'
           onChange={emailChangeHandler}
           onBlur={emailBlurHandler}
+          value={enteredEmail}
         />
         {emailInputHasError && <p className='error-text'>Pls enter a valid email.</p>}
       </div>
